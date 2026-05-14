@@ -1,0 +1,68 @@
+.mm-alertToast {
+  min-width: 280px;
+  max-width: 360px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 18px 40px rgba(47, 47, 47, 0.12);
+  background: rgba(255, 248, 241, 0.96);
+  backdrop-filter: blur(14px);
+}
+
+.mm-alertToast__marker {
+  width: 10px;
+  min-width: 10px;
+  height: 10px;
+  margin-top: 6px;
+  border-radius: 999px;
+  background: #6c8fc6;
+}
+
+.mm-alertToast__content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mm-alertToast__title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #2f2f2f;
+}
+
+.mm-alertToast__message {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #5b656b;
+}
+
+.mm-alertToast--success {
+  background: rgba(247, 253, 247, 0.97);
+  border-color: rgba(76, 175, 80, 0.18);
+}
+
+.mm-alertToast--success .mm-alertToast__marker {
+  background: #4caf50;
+}
+
+.mm-alertToast--warning {
+  background: rgba(255, 249, 237, 0.97);
+  border-color: rgba(201, 145, 33, 0.18);
+}
+
+.mm-alertToast--warning .mm-alertToast__marker {
+  background: #c99121;
+}
+
+.mm-alertToast--error {
+  background: rgba(255, 244, 243, 0.98);
+  border-color: rgba(201, 83, 70, 0.18);
+}
+
+.mm-alertToast--error .mm-alertToast__marker {
+  background: #c95346;
+}

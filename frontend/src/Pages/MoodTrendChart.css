@@ -1,0 +1,386 @@
+/* Mood Trend Chart Component - Professional Mountain & Bar Chart */
+.mtc-card {
+  background: linear-gradient(135deg, #ffffff 0%, #fbfaf7 100%);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.1);
+  transition: box-shadow 300ms ease;
+}
+
+.mtc-card:hover {
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+}
+
+.mtc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  gap: 20px;
+}
+
+.mtc-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #2f2f2f;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.mtc-subtitle {
+  margin: 6px 0 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: #6b7280;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.mtc-controls {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.mtc-legend {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.mtc-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #4b5563;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.mtc-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mtc-chart-toggle {
+  display: flex;
+  gap: 8px;
+  background: #f0f0f0;
+  padding: 6px;
+  border-radius: 12px;
+}
+
+.mtc-toggle-btn {
+  min-width: 44px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 200ms ease;
+  color: #6b7280;
+}
+
+.mtc-toggle-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #2f2f2f;
+}
+
+.mtc-toggle-btn--active {
+  background: white;
+  color: #2f2f2f;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mtc-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  text-align: center;
+  color: #9ca3af;
+}
+
+.mtc-empty-icon {
+  color: #d1d5db;
+  margin-bottom: 16px;
+  opacity: 0.6;
+}
+
+.mtc-empty {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.mtc-chartWrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 20px 0;
+}
+
+.mtc-sliderRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+  padding: 0 8px;
+}
+
+.mtc-sliderLabel {
+  min-width: 130px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.mtc-slider {
+  width: 100%;
+  accent-color: #6c8fc6;
+  cursor: pointer;
+}
+
+.mtc-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 800 / 380;
+}
+
+/* Grid and axes */
+.mtc-grid {
+  pointer-events: none;
+}
+
+.mtc-gridLine {
+  stroke: rgba(0, 0, 0, 0.05);
+  stroke-width: 1;
+  stroke-dasharray: 3, 3;
+}
+
+.mtc-axis {
+  stroke: #d1d5db;
+  stroke-width: 1.5;
+}
+
+.mtc-axisLabel {
+  font-size: 12px;
+  font-weight: 600;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  fill: rgba(47, 47, 47, 0.7);
+  text-anchor: end;
+}
+
+.mtc-dateLabel {
+  font-size: 11px;
+  font-weight: 500;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  fill: rgba(47, 47, 47, 0.5);
+  text-anchor: middle;
+}
+
+/* Mountain chart - smooth curves */
+.mtc-line {
+  stroke-width: 3;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mtc-line--mountain {
+  stroke: url(#mtc-neutral-gradient-line);
+  stroke: #64748b;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.mtc-area {
+  fill: url(#mtc-neutral-gradient);
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.05));
+  opacity: 0.9;
+}
+
+/* Data points */
+.mtc-point {
+  cursor: pointer;
+  transition: r 200ms cubic-bezier(0.34, 1.56, 0.64, 1), filter 200ms ease;
+}
+
+.mtc-point:hover,
+.mtc-point--active {
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+}
+
+.mtc-point--positive:hover,
+.mtc-point--positive.mtc-point--active {
+  filter: drop-shadow(0 4px 14px rgba(98, 168, 142, 0.5));
+}
+
+.mtc-point--negative:hover,
+.mtc-point--negative.mtc-point--active {
+  filter: drop-shadow(0 4px 14px rgba(232, 114, 107, 0.5));
+}
+
+.mtc-point--neutral:hover,
+.mtc-point--neutral.mtc-point--active {
+  filter: drop-shadow(0 4px 14px rgba(108, 143, 198, 0.5));
+}
+
+/* Bar chart */
+.mtc-bar {
+  cursor: pointer;
+  transition: opacity 200ms ease, filter 200ms ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.mtc-bar:hover,
+.mtc-bar--active {
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+  opacity: 1 !important;
+}
+
+/* Tooltip - Floating card */
+.mtc-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #2f2f2f 0%, #1a1a1a 100%);
+  color: #ffffff;
+  padding: 0;
+  border-radius: 14px;
+  font-size: 13px;
+  white-space: nowrap;
+  z-index: 10;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  margin-bottom: 16px;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  animation: tooltipAppear 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes tooltipAppear {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.mtc-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #2f2f2f;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
+.mtc-tooltip__inner {
+  padding: 12px 14px;
+}
+
+.mtc-tooltip__sentiment-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 11px;
+  color: white;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.mtc-tooltip__row {
+  display: flex;
+  gap: 6px;
+  margin: 4px 0;
+}
+
+.mtc-tooltip__row:first-child {
+  margin-top: 0;
+}
+
+.mtc-tooltip__row:last-child {
+  margin-bottom: 0;
+}
+
+.mtc-tooltip__label {
+  opacity: 0.75;
+  font-weight: 600;
+  min-width: 75px;
+}
+
+.mtc-tooltip__value {
+  font-weight: 700;
+  color: #e0e0e0;
+}
+
+@media (max-width: 900px) {
+  .mtc-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .mtc-controls {
+    justify-content: space-between;
+  }
+
+  .mtc-legend {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 600px) {
+  .mtc-card {
+    padding: 18px;
+  }
+
+  .mtc-chartWrap {
+    padding: 10px 0;
+  }
+
+  .mtc-toggle-btn {
+    min-width: 38px;
+    height: 34px;
+    font-size: 11px;
+    padding: 0 8px;
+  }
+
+  .mtc-sliderRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .mtc-sliderLabel {
+    min-width: 0;
+  }
+}

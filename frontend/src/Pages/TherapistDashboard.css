@@ -1,0 +1,464 @@
+/* ── Therapist Dashboard ── matches MindMirror tokens ──────────────────────── */
+
+.td-page {
+  width: 100%;
+  background: #fbfaf7;
+}
+
+.td-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 26px 24px 56px;
+}
+
+/* ── Greeting card ─────────────────────────────────────────────────────────── */
+
+.td-greet {
+  border-radius: 18px;
+  background: #fbf4ee;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  padding: 26px 28px;
+  box-sizing: border-box;
+}
+
+.td-greet__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.td-greet__title {
+  margin: 0;
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #2f2f2f;
+  letter-spacing: -0.4px;
+}
+
+.td-rolePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(108, 143, 198, 0.12);
+  color: #4a6da3;
+  border: 1px solid rgba(108, 143, 198, 0.22);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.td-rolePill__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #6c8fc6;
+}
+
+/* Stats row — same StatChip aesthetic as GreetingBar */
+.td-greet__stats {
+  margin-top: 18px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.td-chip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.80);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  padding: 12px 18px;
+  min-width: 170px;
+  box-sizing: border-box;
+}
+
+.td-chip__num {
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #2f2f2f;
+  line-height: 1;
+}
+
+.td-chip__label {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #6f7a80;
+}
+
+.td-chip--ok .td-chip__num   { color: #2d7f5e; }
+.td-chip--muted .td-chip__num { color: #8b94a0; }
+
+/* ── List header (title + search) ──────────────────────────────────────────── */
+
+.td-listHeader {
+  margin-top: 28px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.td-listTitle {
+  margin: 0;
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #2f2f2f;
+  letter-spacing: -0.3px;
+}
+
+.td-listSubtitle {
+  margin: 4px 0 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 14px;
+  color: #6f7a80;
+  font-weight: 500;
+}
+
+/* Search box */
+.td-searchWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 280px;
+}
+
+.td-searchIcon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8b94a0;
+  pointer-events: none;
+}
+
+.td-search {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+  padding: 11px 16px 11px 42px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2f2f2f;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  outline: none;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.td-search::placeholder {
+  color: rgba(47, 47, 47, 0.45);
+}
+
+.td-search:focus {
+  border-color: rgba(108, 143, 198, 0.55);
+  box-shadow: 0 0 0 3px rgba(108, 143, 198, 0.14);
+}
+
+/* ── Grid of cards ─────────────────────────────────────────────────────────── */
+
+.td-grid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+/* Patient card */
+.td-card {
+  text-align: left;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  background: #fbf4ee;
+  border-radius: 18px;
+  padding: 20px 22px;
+  cursor: pointer;
+  font: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  transition:
+    transform 200ms cubic-bezier(0.34, 1.3, 0.64, 1),
+    box-shadow 200ms ease,
+    border-color 200ms ease;
+}
+
+.td-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(108, 143, 198, 0.45);
+  box-shadow: 0 10px 24px -12px rgba(108, 143, 198, 0.35);
+}
+
+.td-card:focus-visible {
+  outline: none;
+  border-color: rgba(108, 143, 198, 0.6);
+  box-shadow: 0 0 0 3px rgba(108, 143, 198, 0.18);
+}
+
+.td-card.is-paused {
+  background: rgba(251, 244, 238, 0.55);
+}
+
+.td-card.is-paused .td-card__name,
+.td-card.is-paused .td-card__email {
+  color: #8b94a0;
+}
+
+.td-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Avatar with initials */
+.td-card__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #6c8fc6 0%, #8ba5d1 100%);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.td-card.is-paused .td-card__avatar {
+  background: linear-gradient(135deg, #b8bfc7 0%, #cad0d6 100%);
+}
+
+/* Status pill */
+.td-card__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 999px;
+}
+
+.td-card__statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.td-card__status.is-on {
+  background: rgba(98, 168, 142, 0.14);
+  color: #2d7f5e;
+}
+
+.td-card__status.is-on .td-card__statusDot {
+  background: #62a88e;
+  box-shadow: 0 0 0 3px rgba(98, 168, 142, 0.18);
+}
+
+.td-card__status.is-off {
+  background: rgba(0, 0, 0, 0.06);
+  color: #8b94a0;
+}
+
+.td-card__status.is-off .td-card__statusDot {
+  background: #b0b8be;
+}
+
+/* Body */
+.td-card__body {
+  min-width: 0;
+}
+
+.td-card__name {
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #2f2f2f;
+  margin-bottom: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.td-card__email {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 13px;
+  color: #6f7a80;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Footer with CTA */
+.td-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(0, 0, 0, 0.08);
+}
+
+.td-card__cta {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #6c8fc6;
+}
+
+.td-card.is-paused .td-card__cta {
+  color: #8b94a0;
+}
+
+.td-card__arrow {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(108, 143, 198, 0.10);
+  color: #6c8fc6;
+  transition: transform 200ms ease, background 200ms ease;
+}
+
+.td-card:hover .td-card__arrow {
+  transform: translateX(4px);
+  background: rgba(108, 143, 198, 0.18);
+}
+
+.td-card.is-paused .td-card__arrow {
+  background: rgba(0, 0, 0, 0.05);
+  color: #8b94a0;
+}
+
+/* ── Empty state ───────────────────────────────────────────────────────────── */
+
+.td-empty {
+  margin-top: 22px;
+  text-align: center;
+  padding: 56px 28px;
+  border-radius: 18px;
+  background: #fbf4ee;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+.td-empty__icon {
+  font-size: 44px;
+  margin-bottom: 14px;
+  opacity: 0.45;
+}
+
+.td-empty__title {
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: #2f2f2f;
+  margin-bottom: 6px;
+}
+
+.td-empty__hint {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 14px;
+  color: #6f7a80;
+  max-width: 460px;
+  margin: 0 auto;
+  line-height: 1.55;
+}
+
+/* ID card shown when empty */
+.td-idCard {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 22px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  border-radius: 12px;
+}
+
+.td-idCard__label {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #6f7a80;
+}
+
+.td-idCard__value {
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", monospace;
+  font-size: 13px;
+  color: #2f2f2f;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+/* ── Skeletons & error ─────────────────────────────────────────────────────── */
+
+@keyframes td-shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position:  600px 0; }
+}
+
+.td-skeletonGrid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.td-skeleton {
+  height: 168px;
+  border-radius: 18px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.05) 25%,
+    rgba(0, 0, 0, 0.09) 50%,
+    rgba(0, 0, 0, 0.05) 75%
+  );
+  background-size: 600px 100%;
+  animation: td-shimmer 1.4s infinite linear;
+}
+
+.td-error {
+  margin-top: 18px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: rgba(220, 80, 80, 0.08);
+  border: 1px solid rgba(220, 80, 80, 0.18);
+  color: #b94040;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 14px;
+}
+
+/* ── Responsive ────────────────────────────────────────────────────────────── */
+
+@media (max-width: 720px) {
+  .td-greet__top { flex-direction: column; align-items: flex-start; }
+  .td-listHeader { flex-direction: column; align-items: stretch; }
+  .td-searchWrap { width: 100%; min-width: 0; }
+  .td-greet__stats { gap: 8px; }
+  .td-chip { min-width: 0; flex: 1 1 calc(50% - 4px); padding: 10px 14px; }
+  .td-chip__num { font-size: 22px; }
+}

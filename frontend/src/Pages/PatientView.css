@@ -1,0 +1,536 @@
+/* ── Patient View ── matches MindMirror design ─────────────────────────────── */
+
+.pv-page {
+  width: 100%;
+  background: #fbfaf7;
+}
+
+.pv-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 22px 24px 56px;
+}
+
+/* ── Back link ─────────────────────────────────────────────────────────────── */
+.pv-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: transparent;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6c8fc6;
+  cursor: pointer;
+  padding: 6px 10px 6px 0;
+  margin-bottom: 18px;
+  transition: color 150ms ease, transform 150ms ease;
+}
+
+.pv-back:hover {
+  color: #4a6da3;
+  transform: translateX(-2px);
+}
+
+/* ── Patient header card ───────────────────────────────────────────────────── */
+.pv-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  border-radius: 18px;
+  background: #fbf4ee;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  padding: 22px 26px;
+}
+
+.pv-header__left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.pv-header__avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #6c8fc6 0%, #8ba5d1 100%);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.pv-header__info { min-width: 0; }
+
+.pv-header__name {
+  margin: 0 0 3px;
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #2f2f2f;
+  letter-spacing: -0.3px;
+}
+
+.pv-header__email {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 14px;
+  color: #6f7a80;
+  font-weight: 500;
+}
+
+.pv-header__right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.pv-header__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+.pv-header__statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.pv-header__status.is-on {
+  background: rgba(98, 168, 142, 0.14);
+  color: #2d7f5e;
+}
+
+.pv-header__status.is-on .pv-header__statusDot {
+  background: #62a88e;
+  box-shadow: 0 0 0 3px rgba(98, 168, 142, 0.18);
+}
+
+.pv-header__status.is-off {
+  background: rgba(0, 0, 0, 0.06);
+  color: #8b94a0;
+}
+
+.pv-header__status.is-off .pv-header__statusDot {
+  background: #b0b8be;
+}
+
+.pv-header__readonly {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #8b94a0;
+}
+
+/* ── Tabs ──────────────────────────────────────────────────────────────────── */
+.pv-tabs {
+  display: flex;
+  gap: 4px;
+  margin-top: 22px;
+  margin-bottom: 18px;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 4px;
+  border-radius: 999px;
+  width: max-content;
+}
+
+.pv-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6f7a80;
+  padding: 9px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 180ms ease;
+}
+
+.pv-tab:hover { color: #2f2f2f; }
+
+.pv-tab.is-active {
+  background: #ffffff;
+  color: #2f2f2f;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.pv-tab__count {
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.06);
+  color: #6f7a80;
+  padding: 2px 7px;
+  border-radius: 999px;
+  min-width: 22px;
+  text-align: center;
+}
+
+.pv-tab.is-active .pv-tab__count {
+  background: rgba(108, 143, 198, 0.15);
+  color: #6c8fc6;
+}
+
+/* ── Journal tab ───────────────────────────────────────────────────────────── */
+.pv-journal {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.pv-day__label {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #8b94a0;
+  margin-bottom: 10px;
+  padding-left: 4px;
+}
+
+.pv-day__entries {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pv-entry {
+  background: #fbf4ee;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  border-radius: 16px;
+  padding: 18px 22px;
+}
+
+.pv-entry__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.pv-entry__time {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6f7a80;
+}
+
+.pv-entry__sentiment {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  padding: 4px 11px;
+  border-radius: 999px;
+}
+
+.pv-entry__text {
+  margin: 0;
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: #2f2f2f;
+  white-space: pre-wrap;
+}
+
+/* ── Mood tab ──────────────────────────────────────────────────────────────── */
+.pv-mood {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Sentiment summary cards */
+.pv-moodSummary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.pv-statCard {
+  background: #fbf4ee;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  border-radius: 16px;
+  padding: 16px 18px;
+}
+
+.pv-statCard__top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.pv-statCard__icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+}
+
+.pv-statCard__label {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #6f7a80;
+}
+
+.pv-statCard__num {
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #2f2f2f;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.pv-statCard__pct {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #6f7a80;
+}
+
+.pv-statCard__bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.pv-statCard__barFill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 400ms ease;
+}
+
+/* ── Chart card — matches Insights aesthetic ───────────────────────────────── */
+.pv-chartCard {
+  border-radius: 18px;
+  background: #fbf4ee;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  padding: 22px 24px;
+}
+
+.pv-chartCard__head {
+  margin-bottom: 16px;
+}
+
+.pv-chartCard__title {
+  margin: 0 0 4px;
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #2f2f2f;
+  letter-spacing: -0.2px;
+}
+
+.pv-chartCard__sub {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6f7a80;
+}
+
+.pv-chartCard__svgWrap {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.80);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 14px;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.pv-chartSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Chart legend */
+.pv-chartLegend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.60);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pv-chartLegend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #4f5a61;
+  letter-spacing: 0.3px;
+}
+
+.pv-chartLegend__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* ── Empty / blocked / skeleton ────────────────────────────────────────────── */
+.pv-empty {
+  text-align: center;
+  padding: 56px 28px;
+  border-radius: 18px;
+  background: #fbf4ee;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+.pv-empty__icon {
+  font-size: 44px;
+  margin-bottom: 14px;
+  opacity: 0.45;
+}
+
+.pv-empty__title {
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: #2f2f2f;
+  margin-bottom: 6px;
+}
+
+.pv-empty__hint {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 14px;
+  color: #6f7a80;
+  max-width: 460px;
+  margin: 0 auto;
+  line-height: 1.55;
+}
+
+.pv-blocked {
+  margin-top: 20px;
+  text-align: center;
+  padding: 56px 28px;
+  border-radius: 18px;
+  background: #fbf4ee;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+.pv-blocked__icon {
+  font-size: 44px;
+  margin-bottom: 14px;
+  opacity: 0.6;
+}
+
+.pv-blocked__title {
+  margin: 0 0 8px;
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #2f2f2f;
+  letter-spacing: -0.3px;
+}
+
+.pv-blocked__text {
+  margin: 0 0 20px;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 15px;
+  color: #6f7a80;
+  line-height: 1.55;
+  max-width: 460px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pv-blocked__btn {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #ffffff;
+  border-radius: 999px;
+  padding: 10px 22px;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #2f2f2f;
+  cursor: pointer;
+  margin-top: 18px;
+  transition: all 150ms ease;
+}
+
+.pv-blocked__btn:hover {
+  background: #f8f5f1;
+  border-color: rgba(108, 143, 198, 0.4);
+  color: #4a6da3;
+}
+
+@keyframes pv-shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position:  600px 0; }
+}
+
+.pv-skeletonHeader {
+  height: 110px;
+  border-radius: 18px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.05) 25%,
+    rgba(0, 0, 0, 0.09) 50%,
+    rgba(0, 0, 0, 0.05) 75%
+  );
+  background-size: 600px 100%;
+  animation: pv-shimmer 1.4s infinite linear;
+}
+
+/* ── Responsive ────────────────────────────────────────────────────────────── */
+@media (max-width: 720px) {
+  .pv-header { flex-direction: column; align-items: flex-start; }
+  .pv-header__right { align-items: flex-start; }
+  .pv-moodSummary { grid-template-columns: 1fr; }
+  .pv-tabs { width: 100%; }
+  .pv-tab { flex: 1; justify-content: center; }
+  .pv-chartCard { padding: 16px; }
+}

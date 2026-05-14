@@ -1,0 +1,23 @@
+# Python
+backend/venv/
+backend/__pycache__/
+backend/app/__pycache__/
+backend/.env
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+
+# Local runtime/cache data
+backend/models/.extracted/
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+#Mac
+.DS_Store*.zip
+*.zip
+*.mp4
+.env
